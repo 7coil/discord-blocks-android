@@ -137,7 +137,7 @@ documentation.classes.forEach((classy) => {
 					});
 					if (curr.returns) {
 						const returnoutput = curr.returns.types || curr.returns;
-						if (returnoutput[0][0][0] !== 'Promise') {
+						if (returnoutput[0][0][0] === 'Promise') {
 							BlockGen.push({
 								type: `${classy.name}_${curr.name}`,
 								message0,
@@ -272,25 +272,22 @@ documentation.classes.forEach((classy) => {
 	}
 });
 
+const xmlout = js2xmlparser.parse('toolbox', xml, {
+	format: {
+		doubleQuotes: true,
+		indent: '\t',
+		newline: '\n',
+		pretty: true
+	}
+}).replace('<toolbox>', `<toolbox>${fs.readFileSync('default.xml')}`);
+
+const uglified = uglify.minify(code);
+
 try {
-	fs.writeFile('../app/src/main/assets/toolbox.xml', js2xmlparser.parse('toolbox', xml, {
-		format: {
-			doubleQuotes: true,
-			indent: '\t',
-			newline: '\n',
-			pretty: true
-		}
-	}), (err) => {
-		if (err) {
-			console.dir(err);
-			process.exit(1);
-		}
-	});
-
-	fs.writeFileSync('../app/src/main/assets/blockdef.json', JSON.stringify(BlockGen));
-
+	fs.writeFileSync('../app/src/main/assets/blocks/toolbox.xml', xmlout);
+	fs.writeFileSync('../app/src/main/assets/blocks/blockdef.json', JSON.stringify(BlockGen));
 	const uglified = uglify.minify(code);
-	fs.writeFileSync('../app/src/main/assets/blockgen.js', header + uglified.code);
+	fs.writeFileSync('../app/src/main/assets/blocks/blockgen.js', header + uglified.code);
 } catch (err) {
 	console.dir(err);
 	process.exit(1);

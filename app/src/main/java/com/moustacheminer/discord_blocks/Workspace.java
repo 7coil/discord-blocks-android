@@ -1,5 +1,6 @@
 package com.moustacheminer.discord_blocks;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -16,21 +17,41 @@ import java.util.ArrayList;
  */
 
 public class Workspace extends AbstractBlocklyActivity {
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "DiscordBlocks";
 
     private static final String SAVE_FILENAME = "simple_workspace.xml";
     private static final String AUTOSAVE_FILENAME = "simple_workspace_temp.xml";
 
     // Add custom blocks to this list.
     private static final List<String> JAVASCRIPT_GENERATORS = Arrays.asList (
-            "blockgen.js"
+            "blocks/blockgen.js",
+            "blocks/defaultgen.js"
     );
+
     private static final List<String> BLOCKGEN_THING = Arrays.asList (
-            "blockdef.json"
+            "blocks/blockdef.json",
+            "blocks/defaultdef.json",
+            "default/colour_blocks.json",
+            "default/list_blocks.json",
+            "default/logic_blocks.json",
+            "default/loop_blocks.json",
+            "default/math_blocks.json",
+            "default/procedures.json",
+            "default/test_blocks.json",
+            "default/text_blocks.json",
+            "default/variable_blocks.json"
     );
 
     CodeGenerationRequest.CodeGeneratorCallback mCodeGeneratorCallback =
-            new LoggingCodeGeneratorCallback(this, TAG);
+        new CodeGenerationRequest.CodeGeneratorCallback() {
+            @Override
+            public void onFinishCodeGeneration(final String generatedCode) {
+                Log.w(TAG, generatedCode);
+                Intent intent = new Intent(getApplicationContext(), Runtime.class);
+                intent.putExtra("js", generatedCode);
+                startActivity(intent);
+            }
+        };;
 
     @NonNull
     @Override
@@ -41,7 +62,7 @@ public class Workspace extends AbstractBlocklyActivity {
     @NonNull
     @Override
     protected String getToolboxContentsXmlPath() {
-        return "toolbox.xml";
+        return "blocks/toolbox.xml";
     }
 
     @NonNull

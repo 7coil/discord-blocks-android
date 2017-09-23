@@ -1,0 +1,83 @@
+[{
+  "type": "mss_object",
+  "message0": "Create new Object",
+  "output": "Object",
+  "colour": 300,
+  "tooltip": "The Object constructor creates an object wrapper.",
+  "helpUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"
+},
+  {
+    "type": "mss_object_set",
+    "message0": "with %1 set key %2 as %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "object",
+        "check": "Object"
+      },
+      {
+        "type": "field_input",
+        "name": "key",
+        "text": "key"
+      },
+      {
+        "type": "input_value",
+        "name": "token"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 300,
+    "tooltip": "Set a specific key in an object.",
+    "helpUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"
+  },
+  {
+    "type": "mss_property_get",
+    "message0": "get key %1 of %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "key",
+        "text": "key"
+      },
+      {
+        "type": "input_value",
+        "name": "object"
+      }
+    ],
+    "output": null,
+    "colour": 300,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "eval",
+    "message0": "eval %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "text"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 300,
+    "tooltip": "The eval() function evaluates JavaScript code represented as a string.",
+    "helpUrl": "https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/eval"
+  },
+  {
+    "type": "console_log",
+    "message0": "log %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "text"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 160,
+    "tooltip": "Outputs a message to the Web Console.",
+    "helpUrl": "https://developer.mozilla.org/en/docs/Web/API/Console/log"
+  }]
