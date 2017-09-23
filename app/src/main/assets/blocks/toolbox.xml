@@ -299,6 +299,7 @@
 	<block type="mss_object_set"></block>
 	<block type="mss_property_get"></block>
 </category>
+
 	<category name="Client">
 
 		<block type="Client_constructor"></block>
