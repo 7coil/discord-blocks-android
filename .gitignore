@@ -8,3 +8,4 @@
 /captures
 .externalNativeBuild
 /generator/node_modules/
+/app/app-release.apk
