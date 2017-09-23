@@ -245,7 +245,7 @@ documentation.classes.forEach((classy) => {
 						inputsInline: true,
 						previousStatement: null,
 						nextStatement: null,
-						colour: colour.method,
+						colour: colour.event,
 						tooltip: curr.description,
 						helpUrl: `${url}class/${classy.name}?scrollTo=${curr.name}`
 					});
@@ -253,7 +253,7 @@ documentation.classes.forEach((classy) => {
 						Blockly.JavaScript.${classy.name}_${curr.name} = (block) => {
 							const ${classy.name} = Blockly.JavaScript.valueToCode(block, '${classy.name}', Blockly.JavaScript.ORDER_ATOMIC);
 							${(curr.params || []).reduce((array, current) => { array.push(`const ${current.name} = block.getFieldValue('${current.name}');`); return array; }, []).join('')}
-							const statements_function = Blockly.JavaScript.statementToCode(block, 'function');
+							const statements_function = Blockly.JavaScript.statementToCode(block, 'statements');
 							const code = \`\${${classy.name}}.on('${curr.name}', (${(curr.params || []).reduce((array, current) => { array.push(`\${${current.name}}`); return array; }, []).join()}) => {\${statements_function}});\`;
 							return code;
 						};
