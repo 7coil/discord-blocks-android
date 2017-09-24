@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.moustacheminer.discord_blocks.Workspace"
-    tools:showIn="@layout/app_bar_builder">
+    tools:showIn="layout/app_bar_builder">
 
     <TextView
         android:layout_width="wrap_content"

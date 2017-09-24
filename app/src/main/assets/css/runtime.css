@@ -1,0 +1,19 @@
+h1 {
+	font-family: "Noto Sans", "Arial", sans-serif;
+}
+
+code {
+	word-wrap: break-word;
+}
+
+.console {
+	overflow: auto;
+	display: flex;
+	flex-direction: column-reverse;
+}
+
+.icon {
+	width: 25vw;
+	margin-left: auto;
+	margin-right: auto;
+}

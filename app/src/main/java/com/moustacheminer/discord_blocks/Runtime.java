@@ -46,16 +46,11 @@ public class Runtime extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        WebView runtime = (WebView) findViewById(R.id.webview);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            runtime.setWebContentsDebuggingEnabled(true);
-        }
+        final WebView runtime = (WebView) findViewById(R.id.webview);
+        runtime.setWebContentsDebuggingEnabled(true);
         runtime.setWebChromeClient(new WebChromeClient() {
             public boolean onConsoleMessage(ConsoleMessage cm) {
-                Log.d("TAG", cm.message() + " -- From line "
-                        + cm.lineNumber() + " of "
-                        + cm.sourceId() );
-                Toast.makeText(getApplicationContext(), cm.message(), Toast.LENGTH_SHORT).show();
+                runtime.evaluateJavascript("log(`" + cm.message().replaceAll("`", "\\`") + "`)", null);
                 return true;
             }
         });
@@ -65,5 +60,12 @@ public class Runtime extends AppCompatActivity {
         webSettings.setAllowUniversalAccessFromFileURLs(true);
         runtime.addJavascriptInterface(new WebAppInterface(this), "blockly");
         runtime.loadUrl("file:///android_asset/runtime.html");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        WebView runtime = (WebView) findViewById(R.id.webview);
+        runtime.destroy();
     }
 }

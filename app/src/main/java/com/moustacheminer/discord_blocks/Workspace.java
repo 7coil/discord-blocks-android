@@ -2,7 +2,9 @@ package com.moustacheminer.discord_blocks;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
+import android.view.Menu;
 
 import com.google.blockly.android.AbstractBlocklyActivity;
 import com.google.blockly.android.codegen.CodeGenerationRequest;
@@ -98,5 +100,11 @@ public class Workspace extends AbstractBlocklyActivity {
     @NonNull
     protected String getWorkspaceAutosavePath() {
         return AUTOSAVE_FILENAME;
+    }
+
+
+    @Override
+    protected int getActionBarMenuResId() {
+        return R.menu.workspace;
     }
 }
