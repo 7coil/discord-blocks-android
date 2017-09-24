@@ -1,15 +1,8 @@
 package com.moustacheminer.discord_blocks;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.webkit.ConsoleMessage;
-import android.webkit.JavascriptInterface;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.Toast;
 
 /**
  * Created by leondro on 9/24/17.
@@ -33,8 +26,8 @@ public class Info extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onDestroy() {
+        super.onDestroy();
         WebView runtime = (WebView) findViewById(R.id.webview);
         runtime.destroy();
     }

@@ -2,17 +2,14 @@ package com.moustacheminer.discord_blocks;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBar;
 import android.util.Log;
-import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.blockly.android.AbstractBlocklyActivity;
 import com.google.blockly.android.codegen.CodeGenerationRequest;
-import com.google.blockly.android.codegen.LoggingCodeGeneratorCallback;
-import com.google.blockly.model.DefaultBlocks;
 import java.util.Arrays;
 import java.util.List;
-import java.util.ArrayList;
 
 /**
  * Created by leondro on 9/23/17.
@@ -106,5 +103,40 @@ public class Workspace extends AbstractBlocklyActivity {
     @Override
     protected int getActionBarMenuResId() {
         return R.menu.workspace;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        if (id == R.id.action_save) {
+            onSaveWorkspace();
+            return true;
+        } else if (id == R.id.action_load) {
+            onLoadWorkspace();
+            return true;
+        } else if (id == R.id.action_clear) {
+            onClearWorkspace();
+            return true;
+        } else if (id == R.id.action_run) {
+            if (getController().getWorkspace().hasBlocks()) {
+                onRunCode();
+            } else {
+                Toast.makeText(getApplicationContext(), getString(R.string.noblocks), Toast.LENGTH_LONG).show();
+                Log.i(TAG, getString(R.string.noblocks));
+            }
+            return true;
+        } else if (id == R.id.action_info) {
+            Intent intent = new Intent(getApplicationContext(), Info.class);
+            startActivity(intent);
+            return true;
+        } else if (id == android.R.id.home && mNavigationDrawer != null) {
+            setNavDrawerOpened(!isNavDrawerOpen());
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -13,7 +13,7 @@
     <item android:id="@+id/action_run" android:title="@string/action_run"
           android:orderInCategory="15" app:showAsAction="ifRoom"
           android:icon="@drawable/ic_play_arrow_white_24dp"/>
-    <item android:id="@+id/info" android:title="@string/info"
+    <item android:id="@+id/action_info" android:title="@string/info"
           android:orderInCategory="15" app:showAsAction="ifRoom"
           android:icon="@drawable/info"/>
 </menu>
